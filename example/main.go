@@ -16,7 +16,7 @@ func main() {
 	}
 	cred := aws.DefaultChainCredentials
 	s3Bucket := s3.New(&aws.Config{Region: "eu-central-1", Credentials: cred, LogLevel: 1})
-	err = boltbackup.Do(db, s3Bucket)
+	err = boltbackup.Do(db, s3Bucket, "bucketname")
 	if err != nil {
 		log.Fatal(err)
 	}

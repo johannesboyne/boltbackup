@@ -10,14 +10,14 @@ import (
 	"github.com/boltdb/bolt"
 )
 
-func Do(db *bolt.DB, s3Bucket *s3.S3) error {
+func Do(db *bolt.DB, s3Bucket *s3.S3, bucketname string) error {
 	err := db.View(func(tx *bolt.Tx) error {
 		var b bytes.Buffer
 		buffInMem := bufio.NewWriter(&b)
 		_, err := tx.WriteTo(buffInMem)
 		backupdate := time.Now()
 		params := &s3.PutObjectInput{
-			Bucket:               aws.String("cp-bolt-backups"),
+			Bucket:               aws.String(bucketname),
 			Key:                  aws.String(backupdate.Format("2006_01_02_15-04-05")),
 			Body:                 bytes.NewReader(b.Bytes()),
 			ACL:                  aws.String("authenticated-read"),
