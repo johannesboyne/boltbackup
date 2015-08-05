@@ -1,6 +1,6 @@
 #boltbackup.Do
 
-A simple backup service for boltdb to S3.
+A simple backup service for [BoltDB](https://github.com/boltdb/bolt) backups to Amazon [S3](https://github.com/aws/aws-sdk-go).
 ![logo](boltbackup_logo.png)
 
 ##Usage
